@@ -1,8 +1,7 @@
 <%= form_with(model: medical_history) do |form| %>
   <% if medical_history.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(medical_history.errors.count, "error") %> prohibited this medical_history from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h2><%= pluralize(medical_history.errors.count, "error") %> prohibited this medical history from being saved:</h2>
       <ul>
         <% medical_history.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,27 +10,27 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :diagnosis, style: "display: block" %>
-    <%= form.text_field :diagnosis %>
+  <div class="form-group">
+    <%= form.label :diagnosis %>
+    <%= form.text_field :diagnosis, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :consultation_date, style: "display: block" %>
-    <%= form.date_field :consultation_date %>
+  <div class="form-group">
+    <%= form.label :consultation_date %>
+    <%= form.date_field :consultation_date, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :notes, style: "display: block" %>
-    <%= form.text_area :notes %>
+  <div class="form-group">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :patient_id, style: "display: block" %>
-    <%= form.text_field :patient_id %>
+  <div class="form-group">
+    <%= form.label :patient_id %>
+    <%= form.collection_select :patient_id, Patient.all, :id, lambda { |patient| "#{patient.first_name} #{patient.last_name}" },  { prompt: "Selecciona un paciente" }, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
   </div>
 <% end %>

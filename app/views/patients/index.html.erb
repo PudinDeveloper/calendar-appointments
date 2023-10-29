@@ -1,14 +1,18 @@
-<p style="color: green"><%= notice %></p>
+<div class="card">
+  <div class="card-body">
+    <p style="color: green"><%= notice %></p>
+    <h1>Pacientes</h1>
 
-<h1>Patients</h1>
+    <%= link_to "Nuevo paciente", new_patient_path, class: "my-3 btn btn-success" %>
 
-<div id="patients">
-  <% @patients.each do |patient| %>
-    <%= render patient %>
-    <p>
-      <%= link_to "Show this patient", patient %>
-    </p>
-  <% end %>
+    <div id="patients">
+      <% @patients.each do |patient| %>
+        <%= render patient %>
+        <p>
+          <%= link_to "Ver este paciente", patient, class: "my-2 btn btn-primary" %>
+        </p>
+      <% end %>
+    </div>
+
+  </div>
 </div>
-
-<%= link_to "New patient", new_patient_path %>

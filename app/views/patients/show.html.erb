@@ -1,10 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<div class="card">
+  <div class="card-body">
+    <p style="color: green"><%= notice %></p>
 
-<%= render @patient %>
+    <%= link_to "Volver", patients_path, class: "mb-3 btn btn-secondary" %>
+    <%= render @patient %>
 
-<div>
-  <%= link_to "Edit this patient", edit_patient_path(@patient) %> |
-  <%= link_to "Back to patients", patients_path %>
-
-  <%= button_to "Destroy this patient", @patient, method: :delete %>
+    <div class="my-3">
+      <%= link_to "Editar este paciente", edit_patient_path(@patient), class: "btn btn-primary" %>
+      <br><br>
+      <%= button_to "Eliminar este paciente", @patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    </div>
+  </div>
 </div>
