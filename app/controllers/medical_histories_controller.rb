@@ -3,11 +3,13 @@ class MedicalHistoriesController < ApplicationController
 
   # GET /medical_histories or /medical_histories.json
   def index
+    redirect_to patients_path
     @medical_histories = MedicalHistory.all
   end
 
   # GET /medical_histories/1 or /medical_histories/1.json
   def show
+    redirect_to patients_path
   end
 
   # GET /medical_histories/new
@@ -25,7 +27,7 @@ class MedicalHistoriesController < ApplicationController
 
     respond_to do |format|
       if @medical_history.save
-        format.html { redirect_to medical_history_url(@medical_history), notice: "Medical history was successfully created." }
+        format.html { redirect_to patient_path(@medical_history.patient), notice: "Medical history was successfully updated." }
         format.json { render :show, status: :created, location: @medical_history }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,7 @@ class MedicalHistoriesController < ApplicationController
   def update
     respond_to do |format|
       if @medical_history.update(medical_history_params)
-        format.html { redirect_to medical_history_url(@medical_history), notice: "Medical history was successfully updated." }
+        format.html { redirect_to patient_path(@medical_history.patient), notice: "Medical history was successfully updated." }
         format.json { render :show, status: :ok, location: @medical_history }
       else
         format.html { render :edit, status: :unprocessable_entity }

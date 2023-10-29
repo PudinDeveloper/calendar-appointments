@@ -1,3 +1,4 @@
+<h1>Información del Paciente</h1>
 <div class="card">
   <div class="card-body">
     <p style="color: green"><%= notice %></p>
@@ -7,8 +8,30 @@
 
     <div class="my-3">
       <%= link_to "Editar este paciente", edit_patient_path(@patient), class: "btn btn-primary" %>
-      <br><br>
-      <%= button_to "Eliminar este paciente", @patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
     </div>
   </div>
 </div>
+
+<h2 class="my-4">Consultas Médicas | Expediente</h2>
+<%= link_to "Nueva consulta", new_medical_history_path, class: "btn btn-success mb-3" %>
+
+<% if @patient.medical_histories.any? %>
+  <div class="row">
+    <% @patient.medical_histories.each do |history| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Fecha: <%= history.consultation_date %></h5>
+            <p class="card-text">Diagnóstico: <%= history.diagnosis %></p>
+            <p class="card-text">Descripción: <%= history.notes %></p>
+            <!-- Agrega más campos según sea necesario -->
+            <%= link_to "Editar", edit_medical_history_path(history), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No se encontraron historiales médicos para este paciente.</p>
+<% end %>
+

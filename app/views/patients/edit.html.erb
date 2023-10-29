@@ -1,12 +1,15 @@
+<%= link_to "Volver", patients_path, class: "my-3 btn btn-secondary" %>
 <div class="card">
   <div class="card-body">
     <div>
-      <%= link_to "Volver", patients_path, class: "my-3 btn btn-secondary" %>
     </div>
+
+    <%= button_to "Eliminar este paciente", @patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "mb-3 btn btn-danger" %>
 
     <h5 class="card-title">Editar paciente</h5>
 
     <%= render "form", patient: @patient %>
+
 
     <br>
 
