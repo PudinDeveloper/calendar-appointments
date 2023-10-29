@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Medical histories</h1>
+
+<div id="medical_histories">
+  <% @medical_histories.each do |medical_history| %>
+    <%= render medical_history %>
+    <p>
+      <%= link_to "Show this medical history", medical_history %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New medical history", new_medical_history_path %>
